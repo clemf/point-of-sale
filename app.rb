@@ -24,7 +24,8 @@ end
 
 patch("/product/:id") do
   name = params.fetch("name")
+  price = params.fetch("price").to_f
   @product = Product.find(params.fetch("id").to_i)
-  @product.update({:name => name})
+  @product.update({:name => name, :price => price})
   erb(:product)
 end
