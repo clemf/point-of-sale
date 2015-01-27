@@ -16,3 +16,15 @@ post '/add_product' do
   Product.create(name: name, price: price)
   redirect '/'
 end
+
+get '/product/:id' do
+  @product = Product.find(params.fetch("id"))
+  erb :product
+end
+
+patch("/product/:id") do
+  name = params.fetch("name")
+  @product = Product.find(params.fetch("id").to_i)
+  @product.update({:name => name})
+  erb(:product)
+end
