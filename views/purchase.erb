@@ -6,6 +6,7 @@
 <% end %>
 </ul>
 
+<h5>Total charge: <%= @purchase.products.sum(:price) %></h5>
 
 <form action="/purchase/<%= @purchase.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
