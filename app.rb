@@ -3,10 +3,12 @@ require("sinatra/reloader")
 also_reload("lib/**/*.rb")
 require("sinatra/activerecord")
 require("./lib/product")
+require("./lib/purchase")
 require("pg")
 
 get '/' do
   @products = Product.all
+  @purchases = Purchase.all
   erb :index
 end
 
@@ -34,4 +36,15 @@ delete '/product/:id' do
   product = Product.find(params.fetch("id").to_i)
   product.delete
   redirect '/'
+end
+
+post '/add_purchase' do
+  customer_name = params.fetch("customer_name")
+  Purchase.create(customer_name: customer_name)
+  redirect '/'
+end
+
+get '/purchase/:id' do
+  @purchase = Purchase.find(params.fetch("id"))
+  erb :purchase
 end

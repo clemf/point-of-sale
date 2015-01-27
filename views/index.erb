@@ -13,3 +13,17 @@
   <input id="price" name="price" type="text">
   <button type="submit">Add product</button>
 </form>
+
+<h1>Purchases:</h1>
+
+<ul>
+  <% @purchases.each do |purchase| %>
+    <li><a href="/purchase/<%= purchase.id %>"><%= purchase.customer_name %></a></li>
+  <% end %>
+</ul>
+
+<form action="/add_purchase" method="post">
+  <label for="customer_name">Customer name:</label>
+  <input id="customer_name" name="customer_name" type="text">
+  <button type="submit">Add purchase</button>
+</form>
