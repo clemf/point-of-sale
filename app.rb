@@ -48,3 +48,11 @@ get '/purchase/:id' do
   @purchase = Purchase.find(params.fetch("id"))
   erb :purchase
 end
+
+patch '/purchase/:id' do
+  purchase = Purchase.find(params.fetch("id"))
+  params['check'].each do |check|
+    purchase.products << Product.find(check.to_i)
+  end
+  redirect back
+end

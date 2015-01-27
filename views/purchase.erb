@@ -1,4 +1,16 @@
 <h1><%= @purchase.customer_name %>'s Purchase:</h1>
 
+<ul>
+<% @purchase.products.each do |product| %>
+  <li><%= product.name %>, <%= product.price %></li>
+<% end %>
+</ul>
+
+
 <form action="/purchase/<%= @purchase.id %>" method="post">
-  <input name="_method"
+  <input name="_method" type="hidden" value="patch">
+  <% Product.all.each do |product| %>
+    <input type="checkbox" name="check[]" value="<%= product.id %>"><%= product.name %><br>
+  <% end %>
+  <button type="submit">Add products to purchase</button>
+</form>
