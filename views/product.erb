@@ -12,4 +12,9 @@
   <button type="submit">Update</button>
 </form>
 
+<form action="/product/<%= @product.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete product</button>
+</form>
+
 <a href="/">Go back to index</a>

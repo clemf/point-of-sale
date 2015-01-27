@@ -29,3 +29,9 @@ patch("/product/:id") do
   @product.update({:name => name, :price => price})
   erb(:product)
 end
+
+delete '/product/:id' do
+  product = Product.find(params.fetch("id").to_i)
+  product.delete
+  redirect '/'
+end
